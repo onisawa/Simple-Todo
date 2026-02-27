@@ -9,7 +9,7 @@ Created with React + TypeScript + Vite
 NODE_ENV=
 VITE_API_URL=
 ```
-- run following scripts
+- Run following scripts
 ```bash
 
 // install dependencies
@@ -27,7 +27,7 @@ npm run dev
 NODE_ENV=staging
 VITE_API_URL=https://staging.api
 ```
-- run following scripts
+- Run following scripts
 ```bash
 
 // install dependencies
