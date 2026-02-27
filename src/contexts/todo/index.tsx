@@ -7,27 +7,13 @@ const TodoContext = createContext<{
     todos: []
 });
 
-const mockTodos: Todo[] = [
-  {
-    id: 0,
-    text: 'Design solutions following requirements',
-    completed: false,
-    createdAt: new Date().toLocaleString(),
-  },
-  {
-    id: 1,
-    text: 'R&D technology according to the design',
-    completed: false,
-    createdAt: new Date().toLocaleString(),
-  }
-]
-
 export const TodoProvider = ({children}: {children: ReactNode}) => {
     const [todos, setTodos] = useState<Todo[]>([]);
 
     useEffect(() => {
-        console.log(mockTodos);
-        setTodos(mockTodos);
+        fetch(import.meta.env.VITE_API_URL + '/api/todos')
+            .then((res) => res.json().then((data) => setTodos(data))
+        )
     }, [])
 
     return (
