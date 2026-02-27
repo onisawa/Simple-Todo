@@ -1,7 +1,13 @@
+import { TrashIcon } from "@heroicons/react/24/outline"
 import { useTodos } from "../../../contexts/todo"
 
 const TodoList = () => {
-    const { todos, isLoading, toggleTodo, updateText } = useTodos()
+    const { todos, isLoading, toggleTodo, updateText, setSelectedRemoving, setOpenModal } = useTodos()
+
+    const onClickTrashIcon = (id: number) => {
+        setSelectedRemoving(id);
+        setOpenModal(true);
+    }
 
     return (
         <div className="relative mt-4">
@@ -32,6 +38,8 @@ const TodoList = () => {
                             </span>
                         )
                     }
+
+                    <TrashIcon aria-hidden="true" className="cursor-pointer size-6 text-red-600" onClick={() => onClickTrashIcon(todo.id)}/>
                 </div>
             ))}
         </div>

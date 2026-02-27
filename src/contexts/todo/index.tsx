@@ -9,6 +9,10 @@ const TodoContext = createContext<{
     addTodo: (text: string) => void,
     toggleTodo: (index: number) => void, 
     updateText: (index: number, text: string) => void,
+    openModal: boolean, 
+    setOpenModal: (isOpen: boolean) => void,
+    setSelectedRemoving: (id: number) => void,  
+    removeTodo: () => void
 }>({
     todos: [],
     isLoading: false,
@@ -17,6 +21,10 @@ const TodoContext = createContext<{
     addTodo: () => {},
     toggleTodo: () => {},
     updateText: () => {},
+    openModal: false,
+    setOpenModal: () => {},
+    setSelectedRemoving: () => {},
+    removeTodo: () => {}
 });
 
 export const TodoProvider = ({children}: {children: ReactNode}) => {
@@ -24,6 +32,8 @@ export const TodoProvider = ({children}: {children: ReactNode}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
+    const [openModal, setOpenModal] = useState(false)
+    const [selectedRemoving, setSelectedRemoving] = useState(0)
 
     useEffect(() => {
         setIsLoading(true);
@@ -42,7 +52,6 @@ export const TodoProvider = ({children}: {children: ReactNode}) => {
             method: 'Post',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: 'big_1'
             },
             body: JSON.stringify(newTodo)
         }).then((res) => {
@@ -85,8 +94,23 @@ export const TodoProvider = ({children}: {children: ReactNode}) => {
         });
     }
 
+    const removeTodo = () => {
+        setIsLoading(true);
+        fetch(import.meta.env.VITE_API_URL + '/api/todos', { 
+            method: 'Delete',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ todoId: selectedRemoving })
+        }).then((res) => res.json())
+        .then((data) => {
+            setTodos(data.newTodos);
+            setIsLoading(false);
+        });
+    }
+
     return (
-        <TodoContext.Provider value={{todos, isLoading, isError, errorMsg, addTodo, toggleTodo, updateText}}>
+        <TodoContext.Provider value={{todos, isLoading, isError, errorMsg, addTodo, toggleTodo, updateText, openModal, setOpenModal, setSelectedRemoving, removeTodo}}>
             {children}
         </TodoContext.Provider>
     )

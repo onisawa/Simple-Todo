@@ -43,6 +43,8 @@ let todos: Todo[] = [
   }
 ]
 
+let latestId = 1;
+
 export const handlers = [
     http.get('/api/todos', () => {
         return HttpResponse.json([...todos].reverse())
@@ -52,7 +54,7 @@ export const handlers = [
       AddContentResponseBody>('/api/todos', async ({ request }) => {
         const requestBody = await request.json();
         if (todos.some(todo => todo.text === requestBody.text)) return HttpResponse.json({ msg: 'Already added this task. Please be more specific for more efficiency'}, { status: 400 })
-        const newTodo: Todo = { id: todos.length, text: requestBody.text, completed: false, createdAt: new Date().toLocaleString()};
+        const newTodo: Todo = { id: ++latestId, text: requestBody.text, completed: false, createdAt: new Date().toLocaleString()};
         todos = [...todos, newTodo]
         return HttpResponse.json({ newTodo });
     }),
@@ -72,4 +74,12 @@ export const handlers = [
         })
         return HttpResponse.json({ newTodos: [...todos].reverse() });
     }),
+    http.delete<PutContentParams,
+      PutContentRequestBody,
+      PutContentResponseBody>('/api/todos', async ({ request }) => {
+        const requestBody = await request.json();
+        const { todoId } = requestBody;
+        todos = todos.filter(todo => todo.id !== todoId);
+        return HttpResponse.json({ newTodos: [...todos].reverse() });
+    })
 ]
