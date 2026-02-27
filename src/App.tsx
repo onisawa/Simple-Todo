@@ -1,7 +1,12 @@
+import TodoList from "./components/todo/list"
+
 function App() {
   return (
     <>
-      <input type='text' placeholder='Add a new todo' className='w-full rounded-md border shadow-sm p-4' />
+     <div className='px-20'>
+        <h1 className='text-2xl font-bold mb-4'>Todo List</h1>
+        <TodoList />
+      </div>
     </>
   )
 }
