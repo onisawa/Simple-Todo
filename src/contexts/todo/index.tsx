@@ -7,12 +7,16 @@ const TodoContext = createContext<{
     isError: boolean,
     errorMsg: string,
     addTodo: (text: string) => void,
+    toggleTodo: (index: number) => void, 
+    updateText: (index: number, text: string) => void,
 }>({
     todos: [],
     isLoading: false,
     isError: false,
     errorMsg: '',
     addTodo: () => {},
+    toggleTodo: () => {},
+    updateText: () => {},
 });
 
 export const TodoProvider = ({children}: {children: ReactNode}) => {
@@ -51,8 +55,38 @@ export const TodoProvider = ({children}: {children: ReactNode}) => {
         });
     }
 
+    const toggleTodo = (todoId: number) => {
+        setIsLoading(true);
+        fetch(import.meta.env.VITE_API_URL + '/api/todos', { 
+            method: 'Put',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ todoId })
+        }).then((res) => res.json())
+        .then((data) => {
+            setTodos(data.newTodos);
+            setIsLoading(false);
+        });
+    }
+
+    const updateText = (todoId: number, text: string) => {
+        setIsLoading(true);
+        fetch(import.meta.env.VITE_API_URL + '/api/todos', { 
+            method: 'Put',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ todoId, text })
+        }).then((res) => res.json())
+        .then((data) => {
+            setTodos(data.newTodos);
+            setIsLoading(false);
+        });
+    }
+
     return (
-        <TodoContext.Provider value={{todos, isLoading, isError, errorMsg, addTodo}}>
+        <TodoContext.Provider value={{todos, isLoading, isError, errorMsg, addTodo, toggleTodo, updateText}}>
             {children}
         </TodoContext.Provider>
     )

@@ -14,6 +14,20 @@ type AddContentResponseBody = {
   newTodo?: Todo,
 }
 
+type PutContentParams = {
+  filter: string
+}
+ 
+type PutContentRequestBody = {
+  todoId: number,
+  text: string,
+}
+ 
+type PutContentResponseBody = {
+  msg?: string,
+  newTodos?: Todo[],
+}
+
 let todos: Todo[] = [
   {
     id: 0,
@@ -33,7 +47,7 @@ export const handlers = [
     http.get('/api/todos', () => {
         return HttpResponse.json([...todos].reverse())
     }),
-       http.post<AddContentParams,
+    http.post<AddContentParams,
       AddContentRequestBody,
       AddContentResponseBody>('/api/todos', async ({ request }) => {
         const requestBody = await request.json();
@@ -41,5 +55,21 @@ export const handlers = [
         const newTodo: Todo = { id: todos.length, text: requestBody.text, completed: false, createdAt: new Date().toLocaleString()};
         todos = [...todos, newTodo]
         return HttpResponse.json({ newTodo });
+    }),
+    http.put<PutContentParams,
+      PutContentRequestBody,
+      PutContentResponseBody>('/api/todos', async ({ request }) => {
+        const requestBody = await request.json();
+        const { todoId, text } = requestBody;
+        todos = todos.map((todo) => {
+          if (todo.id === todoId) {
+            if (text)
+              return {...todo, text};
+            else
+              return {...todo, completed: !todo.completed, completedAt: !todo.completed ? new Date().toISOString() : null};
+          }
+          return todo;
+        })
+        return HttpResponse.json({ newTodos: [...todos].reverse() });
     }),
 ]

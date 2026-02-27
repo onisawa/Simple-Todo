@@ -1,7 +1,7 @@
 import { useTodos } from "../../../contexts/todo"
 
 const TodoList = () => {
-    const { todos, isLoading } = useTodos()
+    const { todos, isLoading, toggleTodo, updateText } = useTodos()
 
     return (
         <div className="relative mt-4">
@@ -22,7 +22,16 @@ const TodoList = () => {
 
             {todos.map((todo) => (
                 <div key={todo.id} className="flex items-center mb-2">
-                    <input type="text" defaultValue={todo.text} className={`ml-2 text-lg flex-1 ${todo.completed ? 'text-gray-400 line-through' : 'text-black'}`} />
+                    <input type="checkbox" checked={todo.completed} onChange={() => {toggleTodo(todo.id)}} className="form-checkbox h-5 w-5 text-blue-600" />
+                    <input type="text" defaultValue={todo.text} onBlur={(e) =>updateText(todo.id, e.target.value)} className={`ml-2 text-lg flex-1 ${todo.completed ? 'text-gray-400 line-through' : 'text-black'}`} />
+                    
+                    {
+                        todo.completed && todo.completedAt && (
+                            <span className="text-sm text-gray-500">
+                                Completed At: {new Date(todo.completedAt).toLocaleString()}
+                            </span>
+                        )
+                    }
                 </div>
             ))}
         </div>
