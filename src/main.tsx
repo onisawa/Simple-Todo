@@ -5,7 +5,7 @@ import App from './App.tsx'
 import { TodoProvider } from './contexts/todo/index.tsx'
 
 async function deferRender() {
-  if (import.meta.env.PROD) return;
+  if (!import.meta.env.DEV) return;
 
   const { worker } = await import('./mocks/browser.ts');
   return worker.start();
