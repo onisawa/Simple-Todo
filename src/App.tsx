@@ -1,6 +1,7 @@
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import TodoList from "./components/todo/list"
 import { useTodos } from "./contexts/todo";
+import AddTodo from "./components/todo/add";
 
 function App() {
   const {isError} = useTodos();
@@ -16,6 +17,7 @@ function App() {
             )}
           <div className='px-20'>
             <h1 className='text-2xl font-bold mb-4'>Todo List</h1>
+            <AddTodo />
             <TodoList />
           </div>
         </section>      
