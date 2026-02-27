@@ -9,6 +9,11 @@ const TodoList = () => {
         setOpenModal(true);
     }
 
+    const checkUpdateText = (todoId: number, text: string, newText: string) => {
+        if (text !== newText) 
+            updateText(todoId, newText)
+    }
+
     return (
         <div className="relative mt-4">
             {isLoading && (
@@ -26,20 +31,20 @@ const TodoList = () => {
                 </div>
             )}
 
-            {todos.map((todo) => (
-                <div key={todo.id} className="flex items-center mb-2">
-                    <input type="checkbox" checked={todo.completed} onChange={() => {toggleTodo(todo.id)}} className="form-checkbox h-5 w-5 text-blue-600" />
-                    <input type="text" defaultValue={todo.text} onBlur={(e) =>updateText(todo.id, e.target.value)} className={`ml-2 text-lg flex-1 ${todo.completed ? 'text-gray-400 line-through' : 'text-black'}`} />
+            {todos.map(({id, text, completed, completedAt}) => (
+                <div key={id} className="flex items-center mb-2">
+                    <input type="checkbox" checked={completed} onChange={() => {toggleTodo(id)}} className="form-checkbox h-5 w-5 text-blue-600" />
+                    <input type="text" defaultValue={text} onBlur={(e) => checkUpdateText(id, text, e.target.value)} className={`ml-2 text-lg flex-1 ${completed ? 'text-gray-400 line-through' : 'text-black'}`} />
                     
                     {
-                        todo.completed && todo.completedAt && (
+                        completed && completedAt && (
                             <span className="text-sm text-gray-500">
-                                Completed At: {new Date(todo.completedAt).toLocaleString()}
+                                Completed At: {new Date(completedAt).toLocaleString()}
                             </span>
                         )
                     }
 
-                    <TrashIcon aria-hidden="true" className="cursor-pointer size-6 text-red-600" onClick={() => onClickTrashIcon(todo.id)}/>
+                    <TrashIcon aria-hidden="true" className="cursor-pointer size-6 text-red-600" onClick={() => onClickTrashIcon(id)}/>
                 </div>
             ))}
         </div>
