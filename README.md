@@ -1,6 +1,6 @@
 # Simple Todo
 
-Created with React + TypeScript + Vite + tailwind CSS + MSWjs
+Created with React (React Context API) + TypeScript + Vite + tailwind CSS + MSWjs
 
 ## How to run for development
 
