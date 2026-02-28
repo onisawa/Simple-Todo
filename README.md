@@ -1,6 +1,6 @@
 # Simple Todo
 
-Created with React + TypeScript + Vite
+Created with React + TypeScript + Vite + tailwind CSS + MSWjs
 
 ## How to run for development
 
@@ -9,7 +9,7 @@ Created with React + TypeScript + Vite
 NODE_ENV=
 VITE_API_URL=
 ```
-- Run following scripts
+- Run the following scripts
 ```bash
 
 // install dependencies
@@ -27,7 +27,7 @@ npm run dev
 NODE_ENV=staging
 VITE_API_URL=https://staging.api
 ```
-- Run following scripts
+- Run the following scripts
 ```bash
 
 // install dependencies
