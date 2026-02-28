@@ -40,4 +40,4 @@ npm run build
 npm run preview
 
 ```
-View the video that explains how it works and the thought process behind it [here](https://drive.google.com/file/d/1zRW7u-EcIDIPcB-MsSSZmTpUzERiAefl/view?usp=sharing) (Thai language).
+## View the video that explains how it works and the thought process behind it [here](https://drive.google.com/file/d/1zRW7u-EcIDIPcB-MsSSZmTpUzERiAefl/view?usp=sharing) (Thai language).
