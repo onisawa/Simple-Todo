@@ -2,6 +2,9 @@
 
 Created with React (React Context API) + TypeScript + Vite + tailwind CSS + MSWjs
 
+- CRUD Todo tasks.
+- Fetching detail from jobIds list with promise all and load more.
+
 ## How to run for development
 
 - Copy `.env.example` into `.env` and set values.
