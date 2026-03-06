@@ -36,7 +36,8 @@ const JobList = () => {
 				setItemIds(itemsList);
 			}
 
-			const itemIdsForpage = itemsList;
+			const currItem = currPage * ITEM_PER_PAGE;
+			const itemIdsForpage = itemsList.slice(currItem, currItem + ITEM_PER_PAGE);
 
 			const itemsForPage = await Promise.all(
 				itemIdsForpage.map(itemId => (
@@ -44,13 +45,14 @@ const JobList = () => {
 				))
 			)
 
-			setItems([items, ...itemsForPage]);
+			setItems([...items, ...itemsForPage]);
+			setFetchingDetails(false);
 		}
 
     return (
         <>
             {
-                items.length < 1 ? (
+                (itemIds.length === 0 || items.length < 1) ? (
                     <div className="w-full h-full flex justify-center items-center">
 											<svg className="text-gray-300 animate-spin" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"
 													width="24" height="24">
@@ -68,7 +70,9 @@ const JobList = () => {
                         <div className="grid grid-cols-1 gap-4" role="list">
                             {items.map((item) => item.id && (<JobPost key={item.id} {...item} />))}
                         </div>
-                        <button className="bg-orange-400 mt-5 py-2 px-3 rounded-sm text-white hover: cursor-pointer">Load more jobs</button>
+                        <button onClick={() => fetchItems(currentPage + 1)} className="bg-orange-400 mt-5 py-2 px-3 rounded-sm text-white hover:cursor-pointer hover:bg-orange-500 disabled:cursor-default disabled:bg-gray-500" disabled={fetchingDetails}>
+													Load more jobs
+												</button>
                     </div>
                 )
             }
