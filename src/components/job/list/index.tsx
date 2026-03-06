@@ -1,21 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import JobPost from "./jobPost";
 import type { Job } from "../../../types/Job";
 
 const ITEM_PER_PAGE = 6;
 
-const EXAMPLE_RES = {
-  "by": "jamilbk",
-  "id": 35908337,
-  "score": 1,
-  "time": 1683838872,
-  "title": "Firezone (YC W22) is hiring Elixir and Rust engineers",
-  "type": "job",
-  "url": "https://www.ycombinator.com/companies/firezone/jobs"
-}
+// const EXAMPLE_RES = {
+//   "by": "jamilbk",
+//   "id": 35908337,
+//   "score": 1,
+//   "time": 1683838872,
+//   "title": "Firezone (YC W22) is hiring Elixir and Rust engineers",
+//   "type": "job",
+//   "url": "https://www.ycombinator.com/companies/firezone/jobs"
+// }
 
 const JobList = () => {
-    const [items, setItems] = useState<Job[]>([EXAMPLE_RES]);
+    const [items, setItems] = useState<Job[]>([]);
+		const [itemIds, setItemIds] = useState<number[]>([]);
+		const [fetchingDetails, setFetchingDetails] = useState(false);
+		const [currentPage, setCurrrentPage] = useState(0);
+
+		useEffect(() => {
+			if (currentPage === 0) fetchItems(currentPage);
+		}, [])
+
+
+		const fetchItems  = async (currPage: number) => {
+			setCurrrentPage(currPage);
+			setFetchingDetails(true);
+
+			let itemsList = itemIds; 
+			if (itemsList.length === 0) {
+				const res = await fetch(`${import.meta.env.VITE_JOB_API_URL}/jobstories.json`);
+				itemsList = await res.json();
+				setItemIds(itemsList);
+			}
+
+			const itemIdsForpage = itemsList;
+
+			const itemsForPage = await Promise.all(
+				itemIdsForpage.map(itemId => (
+					fetch(`${import.meta.env.VITE_JOB_API_URL}/item/${itemId}.json`).then(res => res.json())
+				))
+			)
+
+			setItems([items, ...itemsForPage]);
+		}
 
     return (
         <>
@@ -36,7 +66,7 @@ const JobList = () => {
                 ) : (
                     <div>
                         <div className="grid grid-cols-1 gap-4" role="list">
-                            {items.map((item) => (<JobPost key={item.id} {...item} />))}
+                            {items.map((item) => item.id && (<JobPost key={item.id} {...item} />))}
                         </div>
                         <button className="bg-orange-400 mt-5 py-2 px-3 rounded-sm text-white hover: cursor-pointer">Load more jobs</button>
                     </div>
