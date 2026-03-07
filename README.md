@@ -3,7 +3,7 @@
 Created with React (React Context API) + TypeScript + Vite + tailwind CSS + MSWjs
 
 - CRUD Todo tasks.
-- Fetching detail from jobIds list with promise all and load more.
+- [New] Fetching details from the jobIds list with promise all and load more.
 
 ## How to run for development
 
@@ -49,4 +49,4 @@ So it will run the project without mocking the API from MSWjs.
 ## (Thought Process of how to run the project) Why do we need to copy `.env.example`? Why not just clone the project and run?
 This is because `.env` always contains sensitive data, so we need to ignore it from git and let it stay on the local machine (server).
 
-## View the video that explains how it works and the thought process behind it [here](https://drive.google.com/file/d/1zRW7u-EcIDIPcB-MsSSZmTpUzERiAefl/view?usp=sharing) (Thai language).
+## View the video that explains how it works and the thought process behind it [here](https://drive.google.com/file/d/1zRW7u-EcIDIPcB-MsSSZmTpUzERiAefl/view?usp=sharing) (Thai language) [Old version].
