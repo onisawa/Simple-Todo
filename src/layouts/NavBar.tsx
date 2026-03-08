@@ -9,6 +9,8 @@ const NavBar = ({children}: PropsWithChildren) => {
     <section className="flex justify-end items-center pt-10 px-20 gap-2">
       <NavLink className={({isActive}) => isActive ? 'font-bold' : 'underline'} to="/">[Home]</NavLink>
       <NavLink className={({isActive}) => isActive ? 'font-bold' : 'underline'} to="/jobs">[Job Board]</NavLink>
+      <NavLink className={({isActive}) => isActive ? 'font-bold' : 'underline'} to="/components">[Components]</NavLink>
+
       <ul>
         {
           components.map((item, index) => (
