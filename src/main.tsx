@@ -6,6 +6,7 @@ import TodoPage from '@pages/Todo.tsx';
 import JobBoardPage from '@pages/JobBoard.tsx';
 import ComponentsPage from '@pages/Component.tsx';
 import ErrorPage from '@/pages/ErrorPage.tsx';
+import NavBar from '@/layouts/NavBar.tsx';
 
 async function deferRender() {
   if (!import.meta.env.DEV) return;
@@ -17,16 +18,22 @@ async function deferRender() {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <TodoPage />,
-    errorElement: <ErrorPage />
-  },
-  {
-    path: '/jobs',
-    element: <JobBoardPage />
-  },
-  {
-    path: '/components',
-    element: <ComponentsPage />
+    element: <NavBar />,
+    errorElement: (<NavBar><ErrorPage /></NavBar>),
+    children: [
+      {
+        index: true,
+        element: <TodoPage />,
+      },
+      {
+        path: '/jobs',
+        element: <JobBoardPage />
+      },
+      {
+        path: '/components',
+        element: <ComponentsPage />
+      }
+    ]
   }
 ]);
 
