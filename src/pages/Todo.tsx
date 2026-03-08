@@ -4,6 +4,7 @@ import TodoList from "@components/todo/list"
 import { useTodos } from "@contexts/todo";
 import AddTodo from "@components/todo/add";
 import ConfirmModal from "@components/todo/common/confirmModal";
+import { TodoProvider } from '@contexts/todo'
 
 const TodoPage = () => {
   const {isError} = useTodos();
@@ -18,9 +19,11 @@ const TodoPage = () => {
       )}
       <div className='px-20'>
         <h1 className='text-2xl font-bold mb-4'>Todo List</h1>
-        <AddTodo />
-        <TodoList />
-        <ConfirmModal />
+        <TodoProvider>
+          <AddTodo />
+          <TodoList />
+          <ConfirmModal />
+        </TodoProvider>
       </div>
     </section>
   )

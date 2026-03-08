@@ -1,8 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@/index.css'
-import App from '@/App.tsx'
-import { TodoProvider } from '@contexts/todo'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import TodoPage from '@pages/Todo.tsx';
+import JobBoardPage from '@pages/JobBoard.tsx';
+import ComponentsPage from '@pages/Component.tsx';
+import ErrorPage from '@/pages/ErrorPage.tsx';
 
 async function deferRender() {
   if (!import.meta.env.DEV) return;
@@ -11,12 +14,26 @@ async function deferRender() {
   return worker.start();
 }
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <TodoPage />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: '/jobs',
+    element: <JobBoardPage />
+  },
+  {
+    path: '/components',
+    element: <ComponentsPage />
+  }
+]);
+
 deferRender().then(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
-      <TodoProvider>
-        <App />
-      </TodoProvider>
+      <RouterProvider router={router} />
     </StrictMode>,
   )
 })
