@@ -1,5 +1,5 @@
 import { TrashIcon } from "@heroicons/react/24/outline"
-import { useTodos } from "../../../contexts/todo"
+import { useTodos } from "@contexts/todo"
 
 const TodoList = () => {
     const { todos, isLoading, toggleTodo, updateText, setSelectedRemoving, setOpenModal } = useTodos()

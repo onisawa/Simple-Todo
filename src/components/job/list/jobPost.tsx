@@ -1,4 +1,4 @@
-import type { Job } from "../../../types/Job"
+import type { Job } from "@/types/Job"
 
 const JobPost = ({ title, url, by, time } : Job) => {
 

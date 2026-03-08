@@ -1,5 +1,5 @@
 import { createContext, useState, type ReactNode, useContext, useEffect } from "react";
-import type { Todo } from "../../types/Todo";
+import type { Todo } from "@/types/Todo";
 
 const TodoContext = createContext<{ 
     todos: Todo[],

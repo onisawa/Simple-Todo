@@ -1,6 +1,6 @@
 import { useState, type SubmitEvent } from 'react'
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
-import { useTodos } from '../../../contexts/todo';
+import { useTodos } from '@contexts/todo';
 
 const AddTodo = () => {
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import JobPost from "./jobPost";
-import type { Job } from "../../../types/Job";
+import JobPost from "@components/job/list/JobPost";
+import type { Job } from "@/types/Job";
 
 const ITEM_PER_PAGE = 6;
 

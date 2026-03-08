@@ -1,8 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import { TodoProvider } from './contexts/todo/index.tsx'
+import '@/index.css'
+import App from '@/App.tsx'
+import { TodoProvider } from '@contexts/todo'
 
 async function deferRender() {
   if (!import.meta.env.DEV) return;
