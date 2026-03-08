@@ -1,11 +1,14 @@
 
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const ComponentsPage = () => {
   const [accordionOpen, setAccordionOpen] = useState(false);
+  const { componentId } = useParams();
 
   return (
     <section className='flex flex-col gap-y-2 mx-auto mt-10 py-10 px-20'>
+      <h1 className='text-2xl font-bold mb-4 text-blue-400 uppercase'>{componentId}</h1>
       <button
         onClick={() => setAccordionOpen(!accordionOpen)}
         className="hover: cursor-pointer"

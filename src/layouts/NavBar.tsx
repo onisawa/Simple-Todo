@@ -1,13 +1,23 @@
 import type { PropsWithChildren } from "react"
-import { Link, Outlet } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
+
+const components = ['accordian', 'progressbar', 'starRating'];
 
 const NavBar = ({children}: PropsWithChildren) => {
   return (
     <>
     <section className="flex justify-end items-center pt-10 px-20 gap-2">
-      <Link className="underline" to="/">[Home]</Link>
-      <Link className="underline" to="/jobs">[Job Board]</Link>
-      <Link className="underline" to="/components">[Components]</Link>
+      <NavLink className={({isActive}) => isActive ? 'font-bold' : 'underline'} to="/">[Home]</NavLink>
+      <NavLink className={({isActive}) => isActive ? 'font-bold' : 'underline'} to="/jobs">[Job Board]</NavLink>
+      <ul>
+        {
+          components.map((item, index) => (
+            <li key={index}>
+              <NavLink className={({isActive}) => isActive ? 'font-bold' : 'underline'} to={`/components/${item}`}>[{item}]</NavLink>
+            </li>
+          ))
+        }
+      </ul>
     </section>
 
       {children ?? <Outlet />}

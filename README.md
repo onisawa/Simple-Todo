@@ -5,7 +5,7 @@ Created with React (React Context API) + TypeScript + Vite + tailwind CSS + MSWj
 - CRUD Todo tasks.
 - [New] Fetching details from the jobIds list with promise all and load more.
 - [New] Absolute Path.
-- [New] Routing.
+- [New] Routing with layout, and params.
 
 ## How to run for development
 

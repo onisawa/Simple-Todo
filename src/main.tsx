@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         element: <JobBoardPage />
       },
       {
-        path: '/components',
+        path: '/components/:componentId',
         element: <ComponentsPage />
       }
     ]
