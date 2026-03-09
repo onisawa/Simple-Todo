@@ -6,6 +6,7 @@ Created with React (React Context API) + TypeScript + Vite + tailwind CSS + MSWj
 - [New] Fetching details from the jobIds list with promise all and load more.
 - [New] Absolute Path.
 - [New] Routing with layout, and params.
+- [New] Dropdown menu.
 
 ## How to run for development
 
