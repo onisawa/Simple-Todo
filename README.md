@@ -7,6 +7,7 @@ Created with React (React Context API) + TypeScript + Vite + tailwind CSS + MSWj
 - [New] Absolute Path.
 - [New] Routing with layout, and params.
 - [New] Dropdown menu.
+- [New] Accordian components.
 
 ## How to run for development
 
