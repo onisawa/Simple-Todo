@@ -8,7 +8,7 @@ const Accordian = ({question, answer}: {question: string, answer:string  }) => {
       <div className="p-4 bg-gray-100 rounded-lg shadow-md">
         <button
           onClick={() => setAccordionOpen(!accordionOpen)}
-          className="w-full flex justify-between items-center hover:cursor-pointer"
+          className="text-indigo-400 w-full flex justify-between items-center hover:cursor-pointer"
         >
           <span className="font-bold text-xl">{question} ?</span>
           <svg
