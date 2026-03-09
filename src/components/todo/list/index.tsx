@@ -32,20 +32,22 @@ const TodoList = () => {
             )}
 
             {todos.map(({id, text, completed, completedAt}) => (
-                <div key={id} className="flex items-center mb-2">
-                    <input type="checkbox" checked={completed} onChange={() => {toggleTodo(id)}} className="form-checkbox h-5 w-5 text-blue-600" />
-                    <input type="text" defaultValue={text} onBlur={(e) => checkUpdateText(id, text, e.target.value)} className={`ml-2 text-lg flex-1 ${completed ? 'text-gray-400 line-through' : 'text-black'}`} />
-                    
-                    {
-                        completed && completedAt && (
-                            <span className="text-sm text-gray-500">
-                                Completed At: {new Date(completedAt).toLocaleString()}
-                            </span>
-                        )
-                    }
+								<div className="bg-slate-100 rounded-md p-4 border border-gray-400 mb-2">
+									<div key={id} className="flex items-center justify-between">
+											<input type="checkbox" checked={completed} onChange={() => {toggleTodo(id)}} className="form-checkbox h-5 w-5 text-blue-600" />
+											<input type="text" defaultValue={text} onBlur={(e) => checkUpdateText(id, text, e.target.value)} className={`ml-2 grow text-xs sm:text-lg ${completed ? 'text-gray-400 line-through' : 'text-black'}`} />
 
-                    <TrashIcon aria-hidden="true" className="cursor-pointer size-6 text-red-600" onClick={() => onClickTrashIcon(id)}/>
-                </div>
+											<TrashIcon aria-hidden="true" className="cursor-pointer size-6 text-red-600" onClick={() => onClickTrashIcon(id)}/>
+											
+									</div>
+									{
+										completed && completedAt && (
+											<span className="block text-xs sm:text-sm text-gray-500">
+												Completed At: {new Date(completedAt).toLocaleString()}
+											</span>
+										)
+									}
+								</div>
             ))}
         </div>
     )
