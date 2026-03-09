@@ -8,7 +8,7 @@ Created with React (React Context API) + TypeScript + Vite + tailwind CSS + MSWj
 - [New] Routing with layout, and params.
 - [New] Dropdown menu.
 - [New] Accordian components.
-- [New] Progress bar.
+- [New] Progress bar, and Step progress bar.
 
 ## How to run for development
 
