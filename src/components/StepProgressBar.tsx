@@ -1,16 +1,5 @@
-import { useEffect, useState } from "react";
+const StepProgressBar = ({numberOfStep, color, filled} : {numberOfStep: number, color: string, filled: number}) => {
 
-const StepProgressBar = ({numberOfStep, color} : {numberOfStep: number, color: string}) => {
-    const [filled, setFilled] = useState(34);
-
-    useEffect(() => {
-      if (filled < 100) 
-        setTimeout(() => setFilled(prev => prev+=5), 50)
-      else
-        setTimeout(() => setFilled(0), 1000)
-
-    }, [filled])
-  
   return (
     <>
       <div className="pt-10">
