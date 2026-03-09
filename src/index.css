@@ -14,15 +14,35 @@
 
 @layer components {
   .main-menu {
-    @apply font-bold;
+    @apply font-bold flex;
 
     &:hover {
       @apply text-purple-600;
+
+      svg {
+        @apply text-purple-600;
+      }
+    }
+
+    svg {
+      @apply text-gray-400;
     }
   }
 
   .main-menu-active {
-    @apply text-purple-600 font-bold;
+    @apply text-purple-600 font-bold flex;
+
+    svg {
+      @apply text-purple-600;
+    }
+  }
+
+  .sub-menu {
+    @apply uppercase block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-50 data-focus:text-purple-600;
+  }
+
+  .sub-menu-active {
+    @apply uppercase block px-4 py-2 text-sm text-purple-600 bg-gray-50;
   }
 
   .vr {
