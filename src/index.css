@@ -10,6 +10,14 @@
   html {
     font-family: "Google Sans", sans-serif;
   }
+
+  body {
+    -ms-overflow-style: none;  /* IE and Edge */
+  }
+
+  body::-webkit-scrollbar {
+    display: none;           /* Chrome, Safari, Opera */
+  }
 }
 
 @layer components {
@@ -49,3 +57,4 @@
     @apply bg-gray-400/25 h-9 w-px ;
   }
 }
+
