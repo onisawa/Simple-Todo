@@ -9,6 +9,7 @@ Created with React (React Context API) + TypeScript + Vite + tailwind CSS + MSWj
 - [New] Dropdown menu.
 - [New] Accordian components.
 - [New] Progress bar, and Step progress bar.
+- [New] Star rating.
 
 ## How to run for development
 

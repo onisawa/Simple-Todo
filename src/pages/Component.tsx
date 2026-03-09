@@ -1,6 +1,7 @@
 
 import AccordianPage from "@/pages/AccordianPage";
 import ProgressBarPage from "@/pages/ProgressBarPage";
+import StarRatingPage from "@/pages/StarRatingPage";
 import { useParams } from "react-router-dom";
 
 const ComponentsPage = () => {
@@ -13,6 +14,9 @@ const ComponentsPage = () => {
       }
       {
         (!componentId || componentId === 'progressbar') && <ProgressBarPage /> 
+      }
+      {
+        (!componentId || componentId === 'starRating') && <StarRatingPage /> 
       }
     </section>
   )
