@@ -34,7 +34,7 @@ const TodoList = () => {
             {todos.map(({id, text, completed, completedAt}) => (
 								<div className="bg-slate-100 rounded-md p-4 border border-gray-400 mb-2">
 									<div key={id} className="flex items-center justify-between">
-											<input type="checkbox" checked={completed} onChange={() => {toggleTodo(id)}} className="form-checkbox h-5 w-5 text-blue-600" />
+											<input type="checkbox" checked={completed} onChange={() => {toggleTodo(id)}} className="h-5 w-5 text-blue-600 cursor-pointer" />
 											<input type="text" defaultValue={text} onBlur={(e) => checkUpdateText(id, text, e.target.value)} className={`ml-2 grow text-xs sm:text-lg ${completed ? 'text-gray-400 line-through' : 'text-black'}`} />
 
 											<TrashIcon aria-hidden="true" className="cursor-pointer size-6 text-red-600" onClick={() => onClickTrashIcon(id)}/>
