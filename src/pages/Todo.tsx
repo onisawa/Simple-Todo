@@ -17,7 +17,7 @@ const TodoPage = () => {
           <h1 className='px-1.5'>Something went wrong, Please try again.</h1>
         </div>
       )}
-      <div className='px-20'>
+      <div className='px-10 md:px-20'>
         <h1 className='text-2xl font-bold mb-4'>Todo List</h1>
         <TodoProvider>
           <AddTodo />
