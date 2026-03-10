@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom"
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 
-const components = ['accordian', 'progressbar', 'starRating'];
+const components = ['accordian', 'progressbar', 'starRating', 'notificationToggle'];
 
 const NavBar = ({children}: PropsWithChildren) => {
   return (

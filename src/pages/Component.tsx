@@ -1,5 +1,6 @@
 
 import AccordianPage from "@/pages/AccordianPage";
+import NotificationPage from "@/pages/NotificationPage";
 import ProgressBarPage from "@/pages/ProgressBarPage";
 import StarRatingPage from "@/pages/StarRatingPage";
 import { useParams } from "react-router-dom";
@@ -17,6 +18,9 @@ const ComponentsPage = () => {
       }
       {
         (!componentId || componentId === 'starRating') && <StarRatingPage /> 
+      }
+      {
+        (!componentId || componentId === 'notificationToggle') && <NotificationPage /> 
       }
     </section>
   )
