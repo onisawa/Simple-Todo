@@ -13,7 +13,7 @@ const StepProgressBar = ({numberOfStep, color, filled} : {numberOfStep: number, 
               const isActive = filled >= (100/(numberOfStep+1)) * step;
               
               return (
-                <div className="flex justify-center items-center w-10 h-10 rounded-4xl text-xl transition-colors duration-150 ease-in-out" style={{ backgroundColor: isActive ? color : '#e2e8f0', color: isActive ? '#ffffff' : color }}>
+                <div key={step} className="flex justify-center items-center w-10 h-10 rounded-4xl text-xl transition-colors duration-150 ease-in-out" style={{ backgroundColor: isActive ? color : '#e2e8f0', color: isActive ? '#ffffff' : color }}>
                   <span>{step}</span>
                 </div>
             )})

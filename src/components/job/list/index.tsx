@@ -34,6 +34,8 @@ const JobList = () => {
 				const res = await fetch(`${import.meta.env.VITE_JOB_API_URL}/jobstories.json`);
 				itemsList = await res.json();
 				setItemIds(itemsList);
+
+				console.log(itemsList);
 			}
 
 			const currItem = currPage * ITEM_PER_PAGE;
@@ -44,6 +46,8 @@ const JobList = () => {
 					fetch(`${import.meta.env.VITE_JOB_API_URL}/item/${itemId}.json`).then(res => res.json())
 				))
 			)
+
+			console.log(itemsForPage);
 
 			setItems([...items, ...itemsForPage]);
 			setFetchingDetails(false);
